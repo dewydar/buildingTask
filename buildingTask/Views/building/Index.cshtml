@@ -1,0 +1,84 @@
+﻿@model IEnumerable<buildingTask.Models.buildingInfoData>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table table-responsive" id="table">
+    <thead>
+        <tr>
+            <th>Building ID</th>
+            <th>Building Number</th>
+            <th>Building Name Arabic</th>
+            <th>Building Name English</th>
+            <th>Create Date</th>
+            <th>construction Contractor Company</th>
+            <th>Building Image</th>
+            <th>Building Type</th>
+            <th>Building Uses</th>
+            <th>Constrations</th>
+            <th>Zones</th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildingID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildingNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildingNameArabic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildingNameEnglish)
+                </td>
+                <td>
+                    @item.createDate.ToString("dd MMM yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.constructionContractorCompany)
+                </td>
+                <td>
+                    <img src="@item.buildingImage" alt="building Image" id="buldingImage" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildingTypeData.buildingTypeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.buildingUsesData.buildingUsesName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.constructionData.constructionName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.zoneData.zoneName)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.buildingID /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.buildingID /* id=item.PrimaryKey */ })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('#table #buldingImage').css('width', '10px');
+            $('#table #buldingImage').css('height', '10px');
+
+        });
+    </script>
+}

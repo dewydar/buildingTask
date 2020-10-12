@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Bulding_TaskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Bulding_TaskEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="buildingInfoDatas" EntityType="Bulding_TaskModel.buildingInfoData" />
+    <EntitySet Name="buildingTypeDatas" EntityType="Bulding_TaskModel.buildingTypeData" />
+    <EntitySet Name="buildingUsesDatas" EntityType="Bulding_TaskModel.buildingUsesData" />
+    <EntitySet Name="constructionDatas" EntityType="Bulding_TaskModel.constructionData" />
+    <EntitySet Name="sysdiagrams" EntityType="Bulding_TaskModel.sysdiagram" />
+    <EntitySet Name="zoneDatas" EntityType="Bulding_TaskModel.zoneData" />
+    <AssociationSet Name="FK_buildingInfoData_buildingTypeData" Association="Bulding_TaskModel.FK_buildingInfoData_buildingTypeData">
+      <End Role="buildingTypeData" EntitySet="buildingTypeDatas" />
+      <End Role="buildingInfoData" EntitySet="buildingInfoDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_buildingInfoData_buildingUsesData" Association="Bulding_TaskModel.FK_buildingInfoData_buildingUsesData">
+      <End Role="buildingUsesData" EntitySet="buildingUsesDatas" />
+      <End Role="buildingInfoData" EntitySet="buildingInfoDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_buildingInfoData_constructionData" Association="Bulding_TaskModel.FK_buildingInfoData_constructionData">
+      <End Role="constructionData" EntitySet="constructionDatas" />
+      <End Role="buildingInfoData" EntitySet="buildingInfoDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_buildingInfoData_zoneData" Association="Bulding_TaskModel.FK_buildingInfoData_zoneData">
+      <End Role="zoneData" EntitySet="zoneDatas" />
+      <End Role="buildingInfoData" EntitySet="buildingInfoDatas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="buildingInfoData">
+    <Key>
+      <PropertyRef Name="buildingID" />
+    </Key>
+    <Property Name="buildingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="buildingNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="buildingNameArabic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="buildingNameEnglish" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="createDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="constructionContractorCompany" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="buildingImage" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="buildingType_FK" Type="Int32" />
+    <Property Name="buildingUses_FK" Type="Int32" />
+    <Property Name="construction_FK" Type="Int32" />
+    <Property Name="zone_FK" Type="Int32" />
+    <Property Name="buildingWidth" Type="Double" Nullable="false" />
+    <Property Name="buildingHeight" Type="Double" Nullable="false" />
+    <Property Name="buildingLength" Type="Double" Nullable="false" />
+    <Property Name="totalBuilding" Type="Double" Nullable="false" />
+    <NavigationProperty Name="buildingTypeData" Relationship="Bulding_TaskModel.FK_buildingInfoData_buildingTypeData" FromRole="buildingInfoData" ToRole="buildingTypeData" />
+    <NavigationProperty Name="buildingUsesData" Relationship="Bulding_TaskModel.FK_buildingInfoData_buildingUsesData" FromRole="buildingInfoData" ToRole="buildingUsesData" />
+    <NavigationProperty Name="constructionData" Relationship="Bulding_TaskModel.FK_buildingInfoData_constructionData" FromRole="buildingInfoData" ToRole="constructionData" />
+    <NavigationProperty Name="zoneData" Relationship="Bulding_TaskModel.FK_buildingInfoData_zoneData" FromRole="buildingInfoData" ToRole="zoneData" />
+    <Property Name="postNumber" Type="Int32" Nullable="false" />
+    <Property Name="instrumentNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="buildingTypeData">
+    <Key>
+      <PropertyRef Name="typeID" />
+    </Key>
+    <Property Name="typeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="buildingTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="buildingInfoDatas" Relationship="Bulding_TaskModel.FK_buildingInfoData_buildingTypeData" FromRole="buildingTypeData" ToRole="buildingInfoData" />
+  </EntityType>
+  <EntityType Name="buildingUsesData">
+    <Key>
+      <PropertyRef Name="buildingUsesID" />
+    </Key>
+    <Property Name="buildingUsesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="buildingUsesName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="buildingInfoDatas" Relationship="Bulding_TaskModel.FK_buildingInfoData_buildingUsesData" FromRole="buildingUsesData" ToRole="buildingInfoData" />
+  </EntityType>
+  <EntityType Name="constructionData">
+    <Key>
+      <PropertyRef Name="constructionID" />
+    </Key>
+    <Property Name="constructionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="constructionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="buildingInfoDatas" Relationship="Bulding_TaskModel.FK_buildingInfoData_constructionData" FromRole="constructionData" ToRole="buildingInfoData" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="zoneData">
+    <Key>
+      <PropertyRef Name="zoneID" />
+    </Key>
+    <Property Name="zoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="zoneName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="buildingInfoDatas" Relationship="Bulding_TaskModel.FK_buildingInfoData_zoneData" FromRole="zoneData" ToRole="buildingInfoData" />
+  </EntityType>
+  <Association Name="FK_buildingInfoData_buildingTypeData">
+    <End Type="Bulding_TaskModel.buildingTypeData" Role="buildingTypeData" Multiplicity="0..1" />
+    <End Type="Bulding_TaskModel.buildingInfoData" Role="buildingInfoData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="buildingTypeData">
+        <PropertyRef Name="typeID" />
+      </Principal>
+      <Dependent Role="buildingInfoData">
+        <PropertyRef Name="buildingType_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_buildingInfoData_buildingUsesData">
+    <End Type="Bulding_TaskModel.buildingUsesData" Role="buildingUsesData" Multiplicity="0..1" />
+    <End Type="Bulding_TaskModel.buildingInfoData" Role="buildingInfoData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="buildingUsesData">
+        <PropertyRef Name="buildingUsesID" />
+      </Principal>
+      <Dependent Role="buildingInfoData">
+        <PropertyRef Name="buildingUses_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_buildingInfoData_constructionData">
+    <End Type="Bulding_TaskModel.constructionData" Role="constructionData" Multiplicity="0..1" />
+    <End Type="Bulding_TaskModel.buildingInfoData" Role="buildingInfoData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="constructionData">
+        <PropertyRef Name="constructionID" />
+      </Principal>
+      <Dependent Role="buildingInfoData">
+        <PropertyRef Name="construction_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_buildingInfoData_zoneData">
+    <End Type="Bulding_TaskModel.zoneData" Role="zoneData" Multiplicity="0..1" />
+    <End Type="Bulding_TaskModel.buildingInfoData" Role="buildingInfoData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zoneData">
+        <PropertyRef Name="zoneID" />
+      </Principal>
+      <Dependent Role="buildingInfoData">
+        <PropertyRef Name="zone_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

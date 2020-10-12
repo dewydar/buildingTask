@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8d19464709044c17be6a7b2b161d422f" Name="Diagram1">
+        <EntityTypeShape EntityType="Bulding_TaskModel.buildingInfoData" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="Bulding_TaskModel.buildingTypeData" Width="1.5" PointX="0.75" PointY="10.375" />
+        <EntityTypeShape EntityType="Bulding_TaskModel.buildingUsesData" Width="1.5" PointX="0.75" PointY="8.125" />
+        <EntityTypeShape EntityType="Bulding_TaskModel.constructionData" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Bulding_TaskModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Bulding_TaskModel.zoneData" Width="1.5" PointX="0.75" PointY="2.625" />
+        <AssociationConnector Association="Bulding_TaskModel.FK_buildingInfoData_buildingTypeData" />
+        <AssociationConnector Association="Bulding_TaskModel.FK_buildingInfoData_buildingUsesData" />
+        <AssociationConnector Association="Bulding_TaskModel.FK_buildingInfoData_constructionData" />
+        <AssociationConnector Association="Bulding_TaskModel.FK_buildingInfoData_zoneData" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

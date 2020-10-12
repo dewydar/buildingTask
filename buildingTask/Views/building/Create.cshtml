@@ -1,0 +1,213 @@
+﻿@model buildingTask.Models.buildingInfoData
+
+
+@using (Html.BeginForm("Create", "building", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>buildingInfoData</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="col-md-9">
+            <div class="col-md-12">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.buildingNumber, "Building Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text" name="buildingNumber" placeholder="building Number" id="buildingNumber" />
+                        @Html.ValidationMessageFor(model => model.buildingNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+
+                <div class="form-group col-md-2">
+                    @Html.LabelFor(model => model.postNumber, "Post Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="number" name="postNumber" placeholder="Post Number" min="0" id="postNumber" />
+                        @Html.ValidationMessageFor(model => model.postNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.instrumentNumber, "Instrument Number", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="number" name="instrumentNumber" placeholder="Instrument Number" min="0" id="instrumentNumber" />
+                        @Html.ValidationMessageFor(model => model.instrumentNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group col-md-5">
+                    @Html.LabelFor(model => model.buildingNameArabic, "Building Name Arabic", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <input type="text" name="buildingNameArabic" placeholder="Building Name Arabic" id="buildingNameArabic" />
+                        @Html.ValidationMessageFor(model => model.buildingNameArabic, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+
+                <div class="form-group col-md-5">
+                    @Html.LabelFor(model => model.buildingNameEnglish, "Building Name English", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <input type="text" name="buildingNameEnglish" placeholder="Building Name English" id="buildingNameEnglish" />
+                        @Html.ValidationMessageFor(model => model.buildingNameEnglish, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group col-md-1">
+                    @Html.LabelFor(model => model.buildingWidth, "Building Width", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <input type="number" name="buildingWidth" placeholder="Building Width" min="0" id="buildingWidth" />
+                        @Html.ValidationMessageFor(model => model.buildingWidth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+                <div class="form-group col-md-1">
+                    @Html.LabelFor(model => model.buildingLength, "Building Length", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <input type="number" name="buildingLength" placeholder="Building Length" min="0" id="buildingLength" />
+                        @Html.ValidationMessageFor(model => model.buildingLength, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+                <div class="form-group col-md-1">
+                    @Html.LabelFor(model => model.buildingHeight, "Building Height", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <input type="number" name="buildingHeight" placeholder="Building Height" min="0" id="buildingHeight" />
+                        @Html.ValidationMessageFor(model => model.buildingHeight, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+
+                <div class="form-group col-md-1">
+                    @Html.LabelFor(model => model.totalBuilding, "Total Building", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <input type="number" name="totalBuilding" placeholder="Total Building" min="0" id="totalBuilding" disabled />
+                        @Html.ValidationMessageFor(model => model.totalBuilding, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.createDate, "Create Date", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <input type="date" name="createDate" />
+                        @Html.ValidationMessageFor(model => model.createDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="form-group col-md-4">
+                    @Html.LabelFor(model => model.constructionContractorCompany, "Construction Contractor Company", htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        <input type="text" name="constructionContractorCompany" placeholder="Construction Contractor Company" id="constructionContractorCompany" />
+                        @Html.ValidationMessageFor(model => model.constructionContractorCompany, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.zone_FK, "Zone", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("zone_FK", new SelectList(ViewBag.zones, "zoneID", "zoneName"), htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.zone_FK, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.buildingType_FK, "Building Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("buildingType_FK", new SelectList(ViewBag.buildingType, "typeID", "buildingTypeName"), htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.buildingType_FK, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.construction_FK, "Construction", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("construction_FK", new SelectList(ViewBag.constartion, "constructionID", "constructionName"), htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.construction_FK, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    @Html.LabelFor(model => model.buildingUses_FK, "Building Uses", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("buildingUses_FK", new SelectList(ViewBag.buildingUses, "buildingUsesID", "buildingUsesName"), htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.buildingUses_FK, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.LabelFor(model => model.buildingImage, "Building Image", htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-12">
+                    <input type="file" name="buildingImage" id="buildingImage" />
+                    @Html.ValidationMessageFor(model => model.buildingImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $(document).on("change", "#buildingWidth", function () {
+                if ($("buildingLength").val() === "") {
+                    $("buildingLength").val(0);
+                }
+                if ($("buildingHeight").val() === "") {
+                    $("buildingHeight").val(0);
+                }
+                var newtotal = parseFloat($(this).val()) * parseFloat($("#buildingLength").val()) * parseFloat($("#buildingHeight").val());
+                $("#totalBuilding").val(parseFloat(newtotal));
+            });
+            $(document).on("change", "#buildingLength", function () {
+                if ($("buildingWidth").val() === "") {
+                    $("buildingWidth").val(0);
+                }
+                if ($("buildingHeight").val() === "") {
+                    $("buildingHeight").val(0);
+                }
+                var newtotal = parseFloat($(this).val()) * parseFloat($("#buildingWidth").val()) * parseFloat($("#buildingHeight").val());
+                $("#totalBuilding").val(parseFloat(newtotal));
+            });
+            $(document).on("change", "#buildingHeight", function () {
+                if ($("buildingLength").val() === "") {
+                    $("buildingLength").val(0);
+                }
+                if ($("buildingWidth").val() === "") {
+                    $("buildingWidth").val(0);
+                }
+                var newtotal = parseFloat($(this).val()) * parseFloat($("#buildingLength").val()) * parseFloat($("#buildingWidth").val());
+                debugger
+                $("#totalBuilding").val(parseFloat(newtotal));
+            });
+        });
+    </script>
+}

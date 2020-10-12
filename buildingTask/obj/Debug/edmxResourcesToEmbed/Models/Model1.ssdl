@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Bulding_TaskModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="buildingInfoData">
+    <Key>
+      <PropertyRef Name="buildingID" />
+    </Key>
+    <Property Name="buildingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="buildingNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="buildingNameArabic" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="buildingNameEnglish" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="createDate" Type="date" Nullable="false" />
+    <Property Name="constructionContractorCompany" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="buildingImage" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="buildingType_FK" Type="int" />
+    <Property Name="buildingUses_FK" Type="int" />
+    <Property Name="construction_FK" Type="int" />
+    <Property Name="zone_FK" Type="int" />
+    <Property Name="buildingWidth" Type="float" Nullable="false" />
+    <Property Name="buildingHeight" Type="float" Nullable="false" />
+    <Property Name="buildingLength" Type="float" Nullable="false" />
+    <Property Name="totalBuilding" Type="float" Nullable="false" />
+    <Property Name="postNumber" Type="int" Nullable="false" />
+    <Property Name="instrumentNumber" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="buildingTypeData">
+    <Key>
+      <PropertyRef Name="typeID" />
+    </Key>
+    <Property Name="typeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="buildingTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="buildingUsesData">
+    <Key>
+      <PropertyRef Name="buildingUsesID" />
+    </Key>
+    <Property Name="buildingUsesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="buildingUsesName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="constructionData">
+    <Key>
+      <PropertyRef Name="constructionID" />
+    </Key>
+    <Property Name="constructionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="constructionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="zoneData">
+    <Key>
+      <PropertyRef Name="zoneID" />
+    </Key>
+    <Property Name="zoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="zoneName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_buildingInfoData_buildingTypeData">
+    <End Role="buildingTypeData" Type="Self.buildingTypeData" Multiplicity="0..1" />
+    <End Role="buildingInfoData" Type="Self.buildingInfoData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="buildingTypeData">
+        <PropertyRef Name="typeID" />
+      </Principal>
+      <Dependent Role="buildingInfoData">
+        <PropertyRef Name="buildingType_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_buildingInfoData_buildingUsesData">
+    <End Role="buildingUsesData" Type="Self.buildingUsesData" Multiplicity="0..1" />
+    <End Role="buildingInfoData" Type="Self.buildingInfoData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="buildingUsesData">
+        <PropertyRef Name="buildingUsesID" />
+      </Principal>
+      <Dependent Role="buildingInfoData">
+        <PropertyRef Name="buildingUses_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_buildingInfoData_constructionData">
+    <End Role="constructionData" Type="Self.constructionData" Multiplicity="0..1" />
+    <End Role="buildingInfoData" Type="Self.buildingInfoData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="constructionData">
+        <PropertyRef Name="constructionID" />
+      </Principal>
+      <Dependent Role="buildingInfoData">
+        <PropertyRef Name="construction_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_buildingInfoData_zoneData">
+    <End Role="zoneData" Type="Self.zoneData" Multiplicity="0..1" />
+    <End Role="buildingInfoData" Type="Self.buildingInfoData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zoneData">
+        <PropertyRef Name="zoneID" />
+      </Principal>
+      <Dependent Role="buildingInfoData">
+        <PropertyRef Name="zone_FK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Bulding_TaskModelStoreContainer">
+    <EntitySet Name="buildingInfoData" EntityType="Self.buildingInfoData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="buildingTypeData" EntityType="Self.buildingTypeData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="buildingUsesData" EntityType="Self.buildingUsesData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="constructionData" EntityType="Self.constructionData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="zoneData" EntityType="Self.zoneData" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_buildingInfoData_buildingTypeData" Association="Self.FK_buildingInfoData_buildingTypeData">
+      <End Role="buildingTypeData" EntitySet="buildingTypeData" />
+      <End Role="buildingInfoData" EntitySet="buildingInfoData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_buildingInfoData_buildingUsesData" Association="Self.FK_buildingInfoData_buildingUsesData">
+      <End Role="buildingUsesData" EntitySet="buildingUsesData" />
+      <End Role="buildingInfoData" EntitySet="buildingInfoData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_buildingInfoData_constructionData" Association="Self.FK_buildingInfoData_constructionData">
+      <End Role="constructionData" EntitySet="constructionData" />
+      <End Role="buildingInfoData" EntitySet="buildingInfoData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_buildingInfoData_zoneData" Association="Self.FK_buildingInfoData_zoneData">
+      <End Role="zoneData" EntitySet="zoneData" />
+      <End Role="buildingInfoData" EntitySet="buildingInfoData" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
